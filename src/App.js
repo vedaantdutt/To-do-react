@@ -20,6 +20,26 @@ class App extends Component {
     };
   }
 
+  add() {
+    if (this.state.userInput !== "") {
+      const userInput = {
+        // Add a random id to delete
+        id: Math.random(),
+        // user intput value added to list
+        value: this.state.userInput,
+      };
+
+      // Update list
+      const list = [...this.state.list];
+      list.push(userInput);
+
+      // reset state
+      this.setState({ list, userInput: "" });
+    } else {
+      alert("Enter some item name");
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -60,7 +80,7 @@ class App extends Component {
                 <Button
                   variant="primary"
                   className="mt-2"
-                  //onClick={}
+                  onClick={() => this.add()}
                   style={{
                     // display: "flex",
                     fontSize: "1rem",
