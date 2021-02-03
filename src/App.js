@@ -20,6 +20,13 @@ class App extends Component {
     };
   }
 
+    //  user input value
+    updateInput(value) {
+      this.setState({
+        userInput: value,
+      });
+    }
+
   add() {
     if (this.state.userInput !== "") {
       const userInput = {
@@ -67,7 +74,7 @@ class App extends Component {
                 placeholder="Add item"
                 size="lg"
                 value={this.state.userInput}
-                //onChange={}
+                onChange={(item) => this.updateInput(item.target.value)}
               />
             </InputGroup>
 
