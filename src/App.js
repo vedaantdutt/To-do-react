@@ -47,6 +47,14 @@ class App extends Component {
     }
   }
 
+  delete(key) {
+    const list = [...this.state.list];
+
+    const updateList = list.filter((item) => item.id !== key);
+
+    this.setState({ list: updateList });
+  }
+
   render() {
     return (
       <Container>
@@ -149,7 +157,7 @@ class App extends Component {
 
                         <Button
                           variant="danger"
-                         // onClick={}
+                          onClick={() => this.delete(item.id)}
                         >
                           Delete
                         </Button>
