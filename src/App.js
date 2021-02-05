@@ -47,6 +47,7 @@ class App extends Component {
     }
   }
 
+  //function to delete an item based on id
   delete(key) {
     const list = [...this.state.list];
 
@@ -55,6 +56,7 @@ class App extends Component {
     this.setState({ list: updateList });
   }
 
+  //function to delete all items
   alldelete() {
     if (this.state.list.length === 0) {
       alert("List is already empty");
@@ -65,6 +67,7 @@ class App extends Component {
     }
   }
 
+  //function to edit an item based on id
   edit = (index) => {
     let todos = [...this.state.list];
     let currentTodo = todos[index].value;
