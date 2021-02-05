@@ -9,7 +9,6 @@ import FormControl from "react-bootstrap/FormControl";
 import ListGroup from "react-bootstrap/ListGroup";
 
 class App extends Component {
-
   constructor(props) {
     super(props);
 
@@ -20,13 +19,14 @@ class App extends Component {
     };
   }
 
-    //  user input value
-    updateInput(value) {
-      this.setState({
-        userInput: value,
-      });
-    }
+  //  user input value
+  updateInput(value) {
+    this.setState({
+      userInput: value,
+    });
+  }
 
+  // Add item
   add() {
     if (this.state.userInput !== "") {
       const userInput = {
@@ -54,6 +54,29 @@ class App extends Component {
 
     this.setState({ list: updateList });
   }
+
+  alldelete() {
+    if (this.state.list.length === 0) {
+      alert("List is already empty");
+    } else {
+      this.setState({
+        list: [],
+      });
+    }
+  }
+
+  edit = (index) => {
+    let todos = [...this.state.list];
+    let currentTodo = todos[index].value;
+    let editedTodo = prompt("Edit the List:", currentTodo);
+    if (editedTodo !== null && editedTodo.trim() !== "") {
+      let updatedTodos = [...todos];
+      updatedTodos[index].value = editedTodo;
+      this.setState({
+        list: updatedTodos,
+      });
+    }
+  };
 
   render() {
     return (
@@ -117,7 +140,7 @@ class App extends Component {
                 <Button
                   variant="danger"
                   className="mt-2"
-                  //onClick={}
+                  onClick={() => this.alldelete()}
                   style={{
                     fontSize: "1rem",
                     // justifyContent: "flex-end",
@@ -149,8 +172,8 @@ class App extends Component {
                         <Button
                           variant="success"
                           style={{ marginRight: "12px" }}
-                          // onClick={
-                          //   }
+                          onClick={
+                            () => this.edit(index)}
                         >
                           Edit
                         </Button>
